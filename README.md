@@ -5,3 +5,9 @@ Este es mi primer proyecto con Git.
 ## Descripción
 
 Estoy aprendiendo a usar Git y GitHub.
+
+
+## Paginas
+- Home
+- Contacto
+- About
