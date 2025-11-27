@@ -1,0 +1,41 @@
+name: CI - Validar HTML
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+      
+      - name: Verificar archivos HTML existen
+        run: |
+          echo "🔍 Verificando archivos del proyecto..."
+          ls -la
+          
+      - name: Validar estructura HTML
+        run: |
+          echo "📄 Archivos HTML encontrados:"
+          find . -name "*.html" -type f
+          
+          echo ""
+          echo "✅ Verificando que index.html existe..."
+          if [ -f "index.html" ]; then
+            echo "   ✓ index.html encontrado"
+          else
+            echo "   ✗ index.html NO encontrado"
+            exit 1
+          fi
+          
+      - name: Resumen
+        run: |
+          echo "🎉 ¡Pipeline ejecutado correctamente!"
+          echo "📊 Resumen del proyecto:"
+          echo "   - Archivos HTML: $(find . -name '*.html' | wc -l)"
+          echo "   - Archivos CSS: $(find . -name '*.css' | wc -l)"
